@@ -25,6 +25,21 @@ app.get('/getTodos', (req, res) => {
     });
 });
 
+app.put('/:id', (req, res) => {
+    const todoID = req.params.id;
+    const userInput = req.body;
+
+    db.getDB().collection(collection).findOneAndUpdate({_id: db.getPrimaryKey(todoID)}, {$set: {todo : userInput.todo}}, {returnOriginal : false}, (err, result) => {
+        if (err) {
+            console.log(err);
+            //should also respond to the user 
+        }
+        else {
+            res.json(result);
+        }
+    });
+});
+
 db.connect((err) => {
     if(err) {
         console.log('unable to connect to database');
