@@ -38,6 +38,7 @@ app.put('/:id', (req, res) => {
             //should also respond to the user 
         }
         else {
+            console.log(result);
             res.json(result);
         }
     });
