@@ -10,6 +10,7 @@ const path = require('path');
 const db = require("./db");
 const collection = "todo";
 
+//Server static
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
