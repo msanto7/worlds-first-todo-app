@@ -1,7 +1,7 @@
 # Todo Application - Node.js, Express, MongoDB
 
 
-Input validation handled with joi. Fetch API handling our http requests from user. 
+Input validation handled with joi. Fetch API handling our http requests from user. Bootstrap handling alerts, buttons, forms. Jquery used to obtain some of the DOM elements. 
 
 ## Database
 We are using a local instance of a MongoDB database, running on port 27017. To communicate to the database we are simply sending query strings...as opposed to something like Mongoose or a more robust Object mapper.
