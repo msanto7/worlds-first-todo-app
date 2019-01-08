@@ -40,6 +40,19 @@ app.put('/:id', (req, res) => {
     });
 });
 
+app.post('/', (req, res) => {
+    const userInput = req.body;
+    console.log(req.body);
+    db.getDB().collection(collection).insertOne(userInput, (err,result) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.json({result : result, document : result.ops[0]});
+        }
+    });
+});
+
 db.connect((err) => {
     if(err) {
         console.log('unable to connect to database');
