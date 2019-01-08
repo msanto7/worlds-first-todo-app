@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Read Server Side 
 app.get('/getTodos', (req, res) => {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
         if(err) {
@@ -25,6 +26,7 @@ app.get('/getTodos', (req, res) => {
     });
 });
 
+// Update Server Side 
 app.put('/:id', (req, res) => {
     const todoID = req.params.id;
     const userInput = req.body;
@@ -40,6 +42,7 @@ app.put('/:id', (req, res) => {
     });
 });
 
+//Create Server Side
 app.post('/', (req, res) => {
     const userInput = req.body;
     console.log(req.body);
@@ -49,6 +52,20 @@ app.post('/', (req, res) => {
         }
         else {
             res.json({result : result, document : result.ops[0]});
+        }
+    });
+});
+
+//Delete Server Side
+app.delete('/:id', (req, res) => {
+    const todoID = req.params.id;
+    db.getDB().collection(collection).findOneAndDelete({_id : db.getPrimaryKey(todoID)}, (err, result) => {
+        if (err) {
+            console.log(err);
+            //send warning back to the user
+        }
+        else {
+            res.json(result);
         }
     });
 });
