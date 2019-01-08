@@ -29,12 +29,7 @@
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <ul class="list-group" id="display">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                  </ul>
+                </ul>
             </div>
             <div class="col-lg-2"></div>
         </div>  
@@ -52,6 +47,17 @@
             const form = $("#form");
             const todoUserInput = $("#todoUserInput");
 
+            const getTodos = () => {
+                fetch('/getTodos', {method: "get"}).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    console.log(data);
+                    displayTodos(data);
+                });
+            }
+            
+            getTodos();
+
             const resetTodosInput = () => {
                 todoUserInput.val('');
             }
@@ -68,7 +74,7 @@
             const buildTemplate = (todo, ids) => {
                 return `<li class="list-group-item" id="${ids.listItemID}">
                             <div class = "row">
-                                <div class="col-md-4" id="${ids.todoID}">${todo.todo}></div>
+                                <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-right">
                                     <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
@@ -82,8 +88,8 @@
                 data.forEach((todo) => {
                     let ids = buildIDS(todo);
                     display.append(buildTemplate(todo, ids));
-                    editTodo(todo, ids.todoID, ids.editID);
-                    deleteTodo(todo, ids.listItemID, ids.deleteID);
+                    //editTodo(todo, ids.todoID, ids.editID);
+                    //deleteTodo(todo, ids.listItemID, ids.deleteID);
                 });
             }
 
