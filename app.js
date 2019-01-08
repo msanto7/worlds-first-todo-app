@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/js/script.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'js/script.js'));
+});
+
 // Read Server Side 
 app.get('/getTodos', (req, res) => {
     db.getDB().collection(collection).find({}).toArray((err, documents) => {
