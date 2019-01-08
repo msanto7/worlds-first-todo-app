@@ -1,5 +1,9 @@
 # Todo Application - Node.js, Express, MongoDB
 
+
+## Database
+We are using a local instance of a MongoDB database, running on port 27017. To communicate to the database we are simply sending query strings...as opposed to something like Mongoose or a more robust Object mapper.
+
 ## Build and Testing
 First start your local mongo DB running the following command
 
